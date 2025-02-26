@@ -5,14 +5,19 @@ import viteLogo from '/vite.svg'
 import './App.css';
 import Header from './Components/Header';
 // import Main from './Components/Main';
+import Body from './Components/Body';
+import ReviewsForm from './Components/Reviews';
 
 function App() {
-  const [count, setCount] = useState(0)
+
 
   return (
     <>
       <Header />
+      <Body />
+      
     </>
+    
   )
 }
 
