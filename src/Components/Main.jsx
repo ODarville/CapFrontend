@@ -1,11 +1,11 @@
-import Header from "./Header";
+// import Header from "./Header";
 
-function Main() {
-    return (
-        <div className="bg-indigo-600">
-            <Header />
-        </div>
-    );
-}
+// function Main() {
+//     return (
+//         <div className="Main">
+//             <Header />
+//         </div>
+//     );
+// }
 
-export default Main;
+// export default Main;
