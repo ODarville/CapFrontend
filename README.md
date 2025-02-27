@@ -1,4 +1,4 @@
-# React + Vite
+# Thats Cap
 Backend: https://github.com/ODarville/CapBackend
 
 ##Notes
