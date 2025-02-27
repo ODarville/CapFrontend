@@ -54,6 +54,9 @@ function ReviewsForm() {
     <div className="formContainer">
       <form onSubmit={handleSubmit}>
         <label htmlFor="Name">Name</label>
+
+        <br />
+
         <input
           name="name"
           type="text"
@@ -63,7 +66,12 @@ function ReviewsForm() {
           required
         />
 
+        <br />
+
         <label htmlFor="Rating">Rating</label>
+
+        <br />
+
         <select name="rating" value={review.rating} onChange={handleChange} required>
           <option value="">Select Rating</option>
           <option value="1">1</option>
@@ -73,7 +81,12 @@ function ReviewsForm() {
           <option value="5">5</option>
         </select>
 
+        <br />
+
         <label htmlFor="Body">Review</label>
+
+        <br />
+        
         <textarea
           name="body"
           cols="30"
