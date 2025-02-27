@@ -1,3 +1,8 @@
+import { useState, useEffect } from 'react';
+import { getReview, createReview, updateReview, deleteReview } from '../API.jsx';
+
+
+
 function ReviewsForm() {
     const [review, setReview] = useState({
         name: '',
@@ -8,26 +13,27 @@ function ReviewsForm() {
     //         const [rating, setRating] = useState(0)
     //         const [body, setBody] = useSState('')
     // console.log({body, rating, name})
-
-    const handleSubmit = (e) => {
-        e.preventDefault()
-        console.log(review)
+    useEffect(() => {
+        getReview().then(response => setReview(response.data));
+    },[]);
+    const handleSubmit = async () => {
+        const newReview = review;
+        const response = await  createReview(newReview);
+        // e.preventDefault()
+        // axios.post(url, review)
+        console.log(newReview)
     }
 
-    const handleEvent = (e) => {
+    const handleChange = (e) => {
         setReview({...review,[e.target.name]:[e.target.value]})
     }
 
     return(
 
         <div className="formContainer">
-            <div>
-                <H2>Write Plaza Reviews Here!</H2>
-            </div>
-            <div>
                 <form onSubmit={handleSubmit}>
                     <label htmlFor="Name">Name</label>
-                    <input type="text" placeholder="Enter Name" onChange={(e) => handleEvent(e)} required/>
+                    <input name="name" type="text" placeholder="Enter Name" onChange = {handleChange} required/>
                     
                     <label htmlFor="Rating">Rating</label>
                     {/* <input type="radio"/> 1
@@ -35,7 +41,7 @@ function ReviewsForm() {
                     <input type="radio"/> 3
                     <input type="radio"/> 4
                     <input type="radio"/> 5 */}
-                    <select name="Rating" id="" onChange={(e) => handleEvent(e)} required>
+                    <select name="rating" id="" onChange= {handleChange}  required>
                         <option value="1">1</option>
                         <option value="2">2</option>
                         <option value="3">3</option>
@@ -44,11 +50,10 @@ function ReviewsForm() {
                     </select>
 
                     <label htmlFor="Body">Review</label>
-                    <textarea name="Body" id="" cols="30" rows="5" placeholder="Enter Review Here" onChange={(e) => handleEvent(e)} required></textarea>
+                    <textarea name="body" id="" cols="30" rows="5" placeholder="Enter Review Here" onChange= {handleChange} required></textarea>
 
                     <button type="submit">Submit</button>
                 </form>
-            </div>
         </div>
     )
 }
