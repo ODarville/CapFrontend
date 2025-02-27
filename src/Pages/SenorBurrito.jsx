@@ -1,6 +1,11 @@
 function SenorBurrito(){
     return (
-        <h1>SenorBurritoPage</h1>
+        <div>
+            <h2>SenorBurritoPage</h2>
+            <br />
+            { <img src="/Images/output (4).png" className="sb-logo" alt="" /> }
+        </div>
+        
     )
 }
 

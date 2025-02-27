@@ -43,7 +43,7 @@
 } */
 
 body{
-  background-color: orange ;
+  background-color: orange green;
   width: auto;
   height: auto;
   background-image:
@@ -66,19 +66,65 @@ body{
 .SB-Logo{
   background-color: transparent;
 }
-button {
-  width: 100px; /* Adjust as needed */
-  height: 100px; /* Adjust as needed */
-  padding: 0; /* Remove extra padding */
-  border: none;
-  background: none;
+/* button { */
+  /* width: 100px;  */
+  /* Adjust as needed */
+  /* height: 100px;  */
+  /* Adjust as needed */
+  /* padding: 0;  */
+  /* Remove extra padding */
+  /* border: none; */
+  /* background: none; */
+  /* display: flex; */
+  /* align-items: center; */
+  /* justify-content: center; */
+/* }  */
+
+/* button img { */
+  /* width: 100%; */
+   /* Make the image fill the button */
+  /* height: 100%;  */
+  /* Ensure it scales properly */
+  /* object-fit: contain;  */
+  /* Keeps image aspect ratio */
+/* } */
+
+.NavBar{
   display: flex;
-  align-items: center;
-  justify-content: center;
+  justify-content: space-between;
+  font-family: cursive;
 }
 
-button img {
-  width: 100%; /* Make the image fill the button */
-  height: 100%; /* Ensure it scales properly */
-  object-fit: contain; /* Keeps image aspect ratio */
+.HomePageButtons{
+  /* -ms-transform: skewX(20deg); */
+  /* -webkit-transform: skewX(20deg); */
+  /* transform: skewX(20deg);   */
+  /* display: inline-block; */
+  background-color: transparent;
+  height: 600px;
+  width: 400px;
+  margin-left: 130px;
+  padding: 0px;
+}
+
+#bp-btn{
+  height: 600px;
+  width: 400px;
+}
+
+#sm-btn{
+  height: 600px;
+  width: 400px;
+}
+
+#sb-btn{
+  height: 600px;
+  width: 400px;
+}
+
+h1{
+  font-size:150px;
+  display: flex;
+  text-align: center;
+  justify-content: center;
 }

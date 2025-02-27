@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { getReview, createReview, updateReview, deleteReview } from "../API.jsx";
 
+
 function ReviewsForm() {
   const [reviews, setReviews] = useState([]); // Store multiple reviews
   const [review, setReview] = useState({
@@ -86,7 +87,7 @@ function ReviewsForm() {
         <label htmlFor="Body">Review</label>
 
         <br />
-        
+
         <textarea
           name="body"
           cols="30"
@@ -97,8 +98,12 @@ function ReviewsForm() {
           required
         ></textarea>
 
+        <br />
+
         <button type="submit">{editingId ? "Update Review" : "Submit Review"}</button>
       </form>
+
+      <br />
 
       <h2>Reviews</h2>
       <ul>

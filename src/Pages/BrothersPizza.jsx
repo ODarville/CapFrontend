@@ -1,6 +1,12 @@
 function BrothersPizza(){
     return (
-        <h1>BrothersPizzaPage</h1>
+        <div>
+            <h2>BrothersPizzaPage</h2>
+            <br />
+            { <img src="/Images/bp_logo.png" className="bp-logo" alt="" /> }
+        </div>
+        
+        
     )
 }
 

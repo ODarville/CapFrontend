@@ -33,21 +33,6 @@ function App() {
 
   return (
     <>
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      
       <Header/>
       <Routes>
         <Route path='/' element={ <Body />}/>

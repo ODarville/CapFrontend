@@ -1,6 +1,11 @@
 function SouthernMaid(){
     return (
-        <h1>SouthernMaidPage</h1>
+        <div>
+            <h2>SouthernMaidPage</h2>
+            <br />
+            { <img src="/Images/output.png" className='sm-logo' alt="" /> }
+        </div>
+        
     )
 }
 
