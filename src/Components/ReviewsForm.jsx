@@ -1,61 +1,104 @@
-import { useState, useEffect } from 'react';
-import { getReview, createReview, updateReview, deleteReview } from '../API.jsx';
-
-
+import { useState, useEffect } from "react";
+import { getReview, createReview, updateReview, deleteReview } from "../API.jsx";
 
 function ReviewsForm() {
-    const [review, setReview] = useState({
-        name: '',
-        rating: '',
-        body: '',
-    })
-    //         const [name, setName] = useSState('')
-    //         const [rating, setRating] = useState(0)
-    //         const [body, setBody] = useSState('')
-    // console.log({body, rating, name})
-    useEffect(() => {
-        getReview().then(response => setReview(response.data));
-    },[]);
-    const handleSubmit = async () => {
-        const newReview = review;
-        const response = await  createReview(newReview);
-        // e.preventDefault()
-        // axios.post(url, review)
-        console.log(newReview)
+  const [reviews, setReviews] = useState([]); // Store multiple reviews
+  const [review, setReview] = useState({
+    name: "",
+    rating: "",
+    body: "",
+  });
+  const [editingId, setEditingId] = useState(null); // Track the review being edited
+
+  // Fetch reviews when component loads
+  useEffect(() => {
+    fetchReviews();
+  }, []);
+
+  const fetchReviews = async () => {
+    const response = await getReview();
+    setReviews(response.data);
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    
+    if (editingId) {
+      // Update review if editing
+      await updateReview(editingId, review);
+      setEditingId(null);
+    } else {
+      // Create new review
+      await createReview(review);
     }
 
-    const handleChange = (e) => {
-        setReview({...review,[e.target.name]:[e.target.value]})
-    }
+    setReview({ name: "", rating: "", body: "" }); // Clear form
+    fetchReviews(); // Refresh reviews
+  };
 
-    return(
+  const handleChange = (e) => {
+    setReview({ ...review, [e.target.name]: e.target.value });
+  };
 
-        <div className="formContainer">
-                <form onSubmit={handleSubmit}>
-                    <label htmlFor="Name">Name</label>
-                    <input name="name" type="text" placeholder="Enter Name" onChange = {handleChange} required/>
-                    
-                    <label htmlFor="Rating">Rating</label>
-                    {/* <input type="radio"/> 1
-                    <input type="radio"/> 2
-                    <input type="radio"/> 3
-                    <input type="radio"/> 4
-                    <input type="radio"/> 5 */}
-                    <select name="rating" id="" onChange= {handleChange}  required>
-                        <option value="1">1</option>
-                        <option value="2">2</option>
-                        <option value="3">3</option>
-                        <option value="4">4</option>
-                        <option value="5">5</option>
-                    </select>
+  const handleEdit = (review) => {
+    setReview(review);
+    setEditingId(review._id); // Set review ID being edited
+  };
 
-                    <label htmlFor="Body">Review</label>
-                    <textarea name="body" id="" cols="30" rows="5" placeholder="Enter Review Here" onChange= {handleChange} required></textarea>
+  const handleDelete = async (id) => {
+    await deleteReview(id);
+    fetchReviews();
+  };
 
-                    <button type="submit">Submit</button>
-                </form>
-        </div>
-    )
+  return (
+    <div className="formContainer">
+      <form onSubmit={handleSubmit}>
+        <label htmlFor="Name">Name</label>
+        <input
+          name="name"
+          type="text"
+          placeholder="Enter Name"
+          value={review.name}
+          onChange={handleChange}
+          required
+        />
+
+        <label htmlFor="Rating">Rating</label>
+        <select name="rating" value={review.rating} onChange={handleChange} required>
+          <option value="">Select Rating</option>
+          <option value="1">1</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+          <option value="4">4</option>
+          <option value="5">5</option>
+        </select>
+
+        <label htmlFor="Body">Review</label>
+        <textarea
+          name="body"
+          cols="30"
+          rows="5"
+          placeholder="Enter Review Here"
+          value={review.body}
+          onChange={handleChange}
+          required
+        ></textarea>
+
+        <button type="submit">{editingId ? "Update Review" : "Submit Review"}</button>
+      </form>
+
+      <h2>Reviews</h2>
+      <ul>
+        {reviews.map((rev) => (
+          <li key={rev._id}>
+            <strong>{rev.name}</strong> ({rev.rating}/5): {rev.body}
+            <button onClick={() => handleEdit(rev)}>Edit</button>
+            <button onClick={() => handleDelete(rev._id)}>Delete</button>
+          </li>
+        ))}
+      </ul>
+    </div>
+  );
 }
 
-export default ReviewsForm
+export default ReviewsForm;

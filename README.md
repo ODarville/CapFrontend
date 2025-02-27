@@ -1,5 +1,6 @@
 # React + Vite
 Backend: https://github.com/ODarville/CapBackend
+
 ##Notes
 Wow this is amazing, while I am still a young dev in terms of starting. Getting here to this point in my developing career is a achievement but this is the beginning.
 While at the time of diplaying this to my classmates, this project is not where I want it to be. This project will be sometime in the future though. I am excited from
@@ -16,12 +17,15 @@ this plaza app!
 *[Features](#features)
 
 ##Techs Used/Dependencies
+
 ###Frontend
+
 *Axios*
 *React*
 *Vite*
 
 ###Backend
+
 *Dotenv*
 *EJS*
 *Express*
